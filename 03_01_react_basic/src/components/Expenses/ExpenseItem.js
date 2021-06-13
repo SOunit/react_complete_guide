@@ -2,7 +2,7 @@ import ExpenseDate from './ExpenseDate';
 import Card from '../UI/Card';
 import './ExpenseItem.css';
 
-function ExpanseItem(props) {
+const ExpanseItem = (props) => {
   return (
     <Card className='expense-item'>
       <ExpenseDate date={props.date} />
@@ -12,6 +12,6 @@ function ExpanseItem(props) {
       </div>
     </Card>
   );
-}
+};
 
 export default ExpanseItem;
