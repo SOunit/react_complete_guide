@@ -16,6 +16,7 @@ const Expenses = (props) => {
   const expenses = props.items.map((expense) => {
     return (
       <ExpenseItem
+        // key prop is importatnt for react to re-render dom
         key={expense.id}
         title={expense.title}
         amount={expense.amount}
