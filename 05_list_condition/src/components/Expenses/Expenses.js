@@ -13,7 +13,11 @@ const Expenses = (props) => {
     setFilteredYear(selectedYear);
   };
 
-  const expenses = props.items.map((expense) => {
+  const filteredExpenses = props.items.filter(
+    (item) => item.date.getFullYear().toString() === filteredYear
+  );
+
+  const expenses = filteredExpenses.map((expense) => {
     return (
       <ExpenseItem
         // key prop is importatnt for react to re-render dom
