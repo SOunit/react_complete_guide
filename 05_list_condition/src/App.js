@@ -39,7 +39,6 @@ const App = () => {
 
     // function pattern is collect
     setExpenses((prevExpenses) => {
-      console.log(prevExpenses);
       return [expense, ...prevExpenses];
     });
   };
