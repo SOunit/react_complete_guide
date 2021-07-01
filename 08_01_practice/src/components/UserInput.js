@@ -1,4 +1,7 @@
 import { useState } from 'react';
+
+import Card from './Card';
+
 import classes from './UserInput.module.css';
 
 const UserInput = (props) => {
@@ -17,7 +20,8 @@ const UserInput = (props) => {
     e.preventDefault();
 
     // add user
-    const user = { name: enteredUserName, age: enteredUserAge };
+    const id = Math.random();
+    const user = { id, name: enteredUserName, age: enteredUserAge };
     props.onAddUser(user);
 
     // reset input
@@ -26,7 +30,7 @@ const UserInput = (props) => {
   };
 
   return (
-    <div className={classes.userInput}>
+    <Card className={classes.userInput}>
       <form onSubmit={addUserHandler}>
         <div>
           <label htmlFor='userName'>User Name</label>
@@ -50,7 +54,7 @@ const UserInput = (props) => {
           <button type='submit'>Add User</button>
         </div>
       </form>
-    </div>
+    </Card>
   );
 };
 
