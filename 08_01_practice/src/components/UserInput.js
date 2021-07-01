@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classes from './UserInput.module.css';
 
-const UserInput = () => {
+const UserInput = (props) => {
   const [enteredUserName, setEnteredUserName] = useState('');
   const [enteredUserAge, setEnteredUserAge] = useState('');
 
@@ -15,6 +15,14 @@ const UserInput = () => {
 
   const addUserHandler = (e) => {
     e.preventDefault();
+
+    // add user
+    const user = { name: enteredUserName, age: enteredUserAge };
+    props.onAddUser(user);
+
+    // reset input
+    setEnteredUserName('');
+    setEnteredUserAge('');
   };
 
   return (
