@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+
 import UserInput from './components/UserInput';
 import UserDisplay from './components/UserDisplay';
+import Modal from './components/Modal';
 
 const DUMMY_DATA = [
   {
@@ -33,6 +35,7 @@ const DUMMY_DATA = [
 function App() {
   const [users, setUsers] = useState(DUMMY_DATA);
   const [hasModal, setHasModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const addUserHandler = (user) => {
     console.log(user);
@@ -41,9 +44,25 @@ function App() {
     setUsers(newUsers);
   };
 
+  const showModalHandler = (message) => {
+    setHasModal(true);
+    setModalMessage(message);
+  };
+
+  const hideModalHandler = () => {
+    setHasModal(false);
+    setModalMessage('');
+  };
+
+  let modal = null;
+  if (hasModal) {
+    modal = <Modal message={modalMessage} onHideModal={hideModalHandler} />;
+  }
+
   return (
     <div>
-      <UserInput onAddUser={addUserHandler} />
+      {modal}
+      <UserInput onAddUser={addUserHandler} onShowModal={showModalHandler} />
       <UserDisplay users={users} />
     </div>
   );

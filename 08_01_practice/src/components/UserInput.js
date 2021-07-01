@@ -19,14 +19,18 @@ const UserInput = (props) => {
   const addUserHandler = (e) => {
     e.preventDefault();
 
-    // add user
-    const id = Math.random();
-    const user = { id, name: enteredUserName, age: enteredUserAge };
-    props.onAddUser(user);
+    if (enteredUserName === '' || enteredUserAge === '') {
+      props.onShowModal('input is empty');
+    } else {
+      // add user
+      const id = Math.random();
+      const user = { id, name: enteredUserName, age: enteredUserAge };
+      props.onAddUser(user);
 
-    // reset input
-    setEnteredUserName('');
-    setEnteredUserAge('');
+      // reset input
+      setEnteredUserName('');
+      setEnteredUserAge('');
+    }
   };
 
   return (
