@@ -1,0 +1,19 @@
+.userInput {
+  border: 1px solid black;
+  width: 80%;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px auto;
+  background-color: white;
+}
+
+.userInput input {
+  width: 100%;
+}
+
+.userInput button {
+  background-color: rgb(105, 15, 189);
+  color: white;
+  border: none;
+  padding: 8px;
+}
