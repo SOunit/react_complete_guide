@@ -49,36 +49,37 @@ const AddUser = (props) => {
     setError(null);
   };
 
-  return (
-    <div>
-      {error && (
-        <ErrorModal
-          title={error.title}
-          message={error.message}
-          onConfirm={errorHandler}
+  // array of jsx pattern
+  // this is possible, but wrapping with div is easier solution
+  return [
+    error && (
+      <ErrorModal
+        key='error-modal'
+        title={error.title}
+        message={error.message}
+        onConfirm={errorHandler}
+      />
+    ),
+    <Card key='add-user-card' className={classes.input}>
+      <form onSubmit={addUserHandler}>
+        <label htmlFor='username'>Username</label>
+        <input
+          id='username'
+          type='text'
+          value={enteredUserName}
+          onChange={userNameChangeHandler}
         />
-      )}
-      <Card className={classes.input}>
-        <form onSubmit={addUserHandler}>
-          <label htmlFor='username'>Username</label>
-          <input
-            id='username'
-            type='text'
-            value={enteredUserName}
-            onChange={userNameChangeHandler}
-          />
-          <label htmlFor='age'>Ages (Years)</label>
-          <input
-            id='age'
-            type='number'
-            value={enteredAge}
-            onChange={ageChangeHandler}
-          />
-          <Button type='submit'>Add User</Button>
-        </form>
-      </Card>
-    </div>
-  );
+        <label htmlFor='age'>Ages (Years)</label>
+        <input
+          id='age'
+          type='number'
+          value={enteredAge}
+          onChange={ageChangeHandler}
+        />
+        <Button type='submit'>Add User</Button>
+      </form>
+    </Card>,
+  ];
 };
 
 export default AddUser;
