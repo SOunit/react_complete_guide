@@ -14,9 +14,19 @@ const Login = (props) => {
   // use effect is for response code to something
   // something can be first load of the page, or input change, anything
   useEffect(() => {
-    setFormIsValid(
-      enteredEmail.includes('@') && enteredPassword.trim().length > 6
-    );
+    // to avoid making too much http request by every user key type
+    const identifier = setTimeout(() => {
+      console.log('check validity');
+      setFormIsValid(
+        enteredEmail.includes('@') && enteredPassword.trim().length > 6
+      );
+    }, 500);
+
+    return () => {
+      // clearup timer while type continue
+      console.log('CLEANUP');
+      clearTimeout(identifier);
+    };
   }, [enteredEmail, enteredPassword]);
 
   const emailChangeHandler = (event) => {
