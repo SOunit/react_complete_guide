@@ -9,16 +9,16 @@ import classes from './AddUser.module.css';
 
 const AddUser = (props) => {
   // ref gives access to dom element
-  const userName = useRef();
-  const userAge = useRef();
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
   const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
 
     // ref always offer current.value property to access value of dom
-    const enteredUserName = userName.current.value;
-    const enteredAge = userAge.current.value;
+    const enteredUserName = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
 
     // validation
     if (enteredUserName.trim().length === 0 || enteredAge.trim().length === 0) {
@@ -41,8 +41,8 @@ const AddUser = (props) => {
     // clear input
     // manipulating dom directly is rare, not recommended
     // input form clear is one of exception
-    userName.current.value = '';
-    userAge.current.value = '';
+    nameInputRef.current.value = '';
+    ageInputRef.current.value = '';
   };
 
   const errorHandler = () => {
@@ -61,9 +61,9 @@ const AddUser = (props) => {
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor='username'>Username</label>
-          <input id='username' type='text' ref={userName} />
+          <input id='username' type='text' ref={nameInputRef} />
           <label htmlFor='age'>Ages (Years)</label>
-          <input id='age' type='number' ref={userAge} />
+          <input id='age' type='number' ref={ageInputRef} />
           <Button type='submit'>Add User</Button>
         </form>
       </Card>
