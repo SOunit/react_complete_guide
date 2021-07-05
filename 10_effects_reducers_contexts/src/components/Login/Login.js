@@ -11,6 +11,24 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  useEffect(() => {
+    console.log('1. this run after every rendering');
+  });
+
+  useEffect(() => {
+    console.log('2. only after first time rendering');
+  }, []);
+
+  useEffect(() => {
+    console.log('3. after first time rendering, and email change');
+  }, [enteredEmail]);
+
+  useEffect(() => {
+    return () => {
+      console.log('4. every time after first rendering');
+    };
+  }, [enteredEmail]);
+
   // use effect is for response code to something
   // something can be first load of the page, or input change, anything
   useEffect(() => {
