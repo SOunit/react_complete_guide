@@ -28,6 +28,10 @@ function App() {
     setIsLoggedIn(false);
   };
 
+  // context needs 2 steps
+  // 1. provide context
+  // 2. use context, with consumer or useContext hook
+  // by context, child element can access context data.
   return (
     <AuthContext.Provider
       value={{
