@@ -1,0 +1,34 @@
+.addFoodItem {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  border-bottom: 1px solid rgb(206, 206, 206);
+}
+
+.addFoodItem h3 {
+  margin: 0;
+}
+
+.foodAddButton {
+  background-color: rgb(112, 4, 4);
+  color: white;
+  display: block;
+  padding: 10px 45px;
+  border-radius: 20px;
+  border: none;
+  font-style: bold;
+  margin-top: 5px;
+}
+
+.countInput {
+  width: 40px;
+  border: 1px solid rgb(212, 212, 212);
+  border-radius: 5px;
+}
+
+.amount {
+  font-style: bold;
+  font-size: 20px;
+  color: rgb(199, 113, 0);
+}

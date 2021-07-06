@@ -1,0 +1,16 @@
+.infoBox {
+  background-color: rgb(104, 104, 104);
+  color: white;
+  border-radius: 10px;
+
+  width: 600px;
+  margin: 120px auto 0 auto;
+  padding: 5px 10px 10px 10px;
+
+  text-align: center;
+  box-shadow: 2px 2px 3px 0.5 #000;
+}
+
+.infoBox h2 {
+  margin: 0;
+}

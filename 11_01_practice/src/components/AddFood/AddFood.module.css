@@ -1,0 +1,11 @@
+.addFood {
+  width: 80%;
+  margin: 30px auto 0 auto;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.addFoodItems {
+  list-style: none;
+  padding: 24px;
+}

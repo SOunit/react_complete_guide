@@ -1,0 +1,27 @@
+.cartButton {
+  display: flex;
+  /* setting for vertical */
+  align-items: center;
+  /* setting for horizontal */
+  justify-content: space-around;
+  margin-right: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: rgb(85, 0, 0);
+  color: white;
+  width: 200px;
+}
+
+.number {
+  background-color: rgb(192, 54, 0);
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+}
+
+.cartButton:hover,
+.cartButton:active {
+  background-color: blue;
+}
