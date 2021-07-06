@@ -43,11 +43,15 @@ const Login = (props) => {
 
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: 'USER_INPUT', val: event.target.value });
+
+    // this code depends on old state, not good
     setFormIsValid(event.target.value.includes('@') && passwordState.isValid);
   };
 
   const passwordChangeHandler = (event) => {
     dispatchPassword({ type: 'USER_INPUT', val: event.target.value });
+
+    // this code depends on old state, not good
     setFormIsValid(emailState.isValid && event.target.value.trim().length > 6);
   };
 
