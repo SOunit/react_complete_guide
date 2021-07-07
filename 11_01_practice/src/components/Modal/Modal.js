@@ -19,7 +19,14 @@ const Modal = (props) => {
       <div className={classes.bg} onClick={props.onCloseModal}></div>
       <div className={classes.modal}>
         {items}
-        <h2>Total Amount</h2>
+        <div>
+          <h2>Total Amount</h2>
+          <div>${ctx.onTotalAmount()}</div>
+        </div>
+        <div className={classes.actions}>
+          <button className={classes.cancelButton}>Cancel</button>
+          <button className={classes.orderButton}>Order</button>
+        </div>
       </div>
     </React.Fragment>
   );

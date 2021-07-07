@@ -64,6 +64,14 @@ export const CartContextProvider = (props) => {
     return count;
   };
 
+  const totalAmountHandler = () => {
+    let totalAmount = 0;
+    cart.map((item) => {
+      return (totalAmount += item.amount * item.count);
+    });
+    return Math.floor(totalAmount * 100) / 100;
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -71,6 +79,7 @@ export const CartContextProvider = (props) => {
         onAddItem: addItemHandler,
         onCount: countHandler,
         onRemoveItem: removeItemHandler,
+        onTotalAmount: totalAmountHandler,
       }}
     >
       {props.children}
