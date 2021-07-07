@@ -16,6 +16,7 @@ const AddFoodItem = (props) => {
 
   const itemAddHandler = () => {
     const item = {
+      id: props.id,
       title: props.title,
       description: props.description,
       amount: props.amount,

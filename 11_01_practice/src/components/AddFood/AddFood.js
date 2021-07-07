@@ -5,6 +5,7 @@ const AddFood = (props) => {
   const items = props.menu.map((item) => (
     <AddFoodItem
       key={item.id}
+      id={item.id}
       title={item.title}
       description={item.description}
       amount={item.amount}

@@ -23,6 +23,28 @@ export const CartContextProvider = (props) => {
     });
   };
 
+  const removeItemHandler = (itemId) => {
+    setCart((prevState) => {
+      // get cart
+      const newCart = [...prevState];
+
+      // get item index
+      const cartIndex = newCart.findIndex((item) => {
+        return item.id === itemId;
+      });
+
+      // set count
+      newCart[cartIndex].count -= 1;
+
+      // if no item, then remove
+      if (newCart[cartIndex].count < 1) {
+        newCart.splice(cartIndex, 1);
+      }
+
+      return newCart;
+    });
+  };
+
   const countHandler = () => {
     let count = 0;
     cart.map((item) => {
@@ -33,7 +55,12 @@ export const CartContextProvider = (props) => {
 
   return (
     <CartContext.Provider
-      value={{ cart: cart, onAddItem: addItemHandler, onCount: countHandler }}
+      value={{
+        cart: cart,
+        onAddItem: addItemHandler,
+        onCount: countHandler,
+        onRemoveItem: removeItemHandler,
+      }}
     >
       {props.children}
     </CartContext.Provider>
