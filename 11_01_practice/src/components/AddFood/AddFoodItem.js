@@ -10,7 +10,6 @@ const AddFoodItem = (props) => {
   const ctx = useContext(CartContext);
 
   const countChangeHandler = (event) => {
-    console.log(event.target.value);
     setCount(event.target.value);
   };
 
@@ -22,7 +21,7 @@ const AddFoodItem = (props) => {
       amount: props.amount,
       count: +count,
     };
-    ctx.onAddItem(item);
+    ctx.onAddItem(item, +count);
   };
 
   return (

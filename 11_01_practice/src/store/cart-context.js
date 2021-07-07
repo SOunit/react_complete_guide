@@ -13,7 +13,7 @@ export const CartContextProvider = (props) => {
     },
   ]);
 
-  const addItemHandler = (item) => {
+  const addItemHandler = (item, count) => {
     setCart((prevState) => {
       // check item in cart
       const newCart = [...prevState];
@@ -22,14 +22,12 @@ export const CartContextProvider = (props) => {
         return i.id === item.id;
       });
 
-      console.log('addItemHandler, itemIndex', itemIndex);
-
       if (itemIndex === -1) {
         // add new item
         newCart.push(item);
       } else {
         // update count
-        newCart[itemIndex].count += 1;
+        newCart[itemIndex].count += count;
       }
 
       return newCart;
@@ -61,7 +59,7 @@ export const CartContextProvider = (props) => {
   const countHandler = () => {
     let count = 0;
     cart.map((item) => {
-      count += item.count;
+      return (count += item.count);
     });
     return count;
   };
