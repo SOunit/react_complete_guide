@@ -24,8 +24,12 @@ const Modal = (props) => {
           <div>${ctx.onTotalAmount()}</div>
         </div>
         <div className={classes.actions}>
-          <button className={classes.cancelButton}>Cancel</button>
-          <button className={classes.orderButton}>Order</button>
+          <button className={`${classes.button} ${classes.cancelButton}`}>
+            Close
+          </button>
+          <button className={`${classes.button} ${classes.orderButton}`}>
+            Order
+          </button>
         </div>
       </div>
     </React.Fragment>
