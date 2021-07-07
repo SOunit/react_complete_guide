@@ -12,8 +12,18 @@ export const CartContextProvider = (props) => {
     });
   };
 
+  const countHandler = () => {
+    let count = 0;
+    cart.map((item) => {
+      count += item.count;
+    });
+    return count;
+  };
+
   return (
-    <CartContext.Provider value={{ cart: cart, onAddItem: addItemHandler }}>
+    <CartContext.Provider
+      value={{ cart: cart, onAddItem: addItemHandler, onCount: countHandler }}
+    >
       {props.children}
     </CartContext.Provider>
   );
