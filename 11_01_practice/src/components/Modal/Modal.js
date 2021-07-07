@@ -24,7 +24,10 @@ const Modal = (props) => {
           <div>${ctx.onTotalAmount()}</div>
         </div>
         <div className={classes.actions}>
-          <button className={`${classes.button} ${classes.cancelButton}`}>
+          <button
+            className={`${classes.button} ${classes.cancelButton}`}
+            onClick={props.onCloseModal}
+          >
             Close
           </button>
           <button className={`${classes.button} ${classes.orderButton}`}>
