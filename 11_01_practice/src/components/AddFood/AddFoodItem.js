@@ -1,13 +1,27 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+
+import CartContext from '../../store/cart-context';
 
 import classes from './AddFoodItem.module.css';
 
 const AddFoodItem = (props) => {
   const [count, setCount] = useState(1);
 
+  const ctx = useContext(CartContext);
+
   const countChangeHandler = (event) => {
     console.log(event.target.value);
     setCount(event.target.value);
+  };
+
+  const itemAddHandler = () => {
+    const item = {
+      title: props.title,
+      description: props.description,
+      amount: props.amount,
+      count: +count,
+    };
+    ctx.onAddItem(item);
   };
 
   return (
@@ -26,7 +40,9 @@ const AddFoodItem = (props) => {
           className={classes.countInput}
           min='1'
         />
-        <button className={classes.foodAddButton}>+ Add</button>
+        <button className={classes.foodAddButton} onClick={itemAddHandler}>
+          + Add
+        </button>
       </div>
     </li>
   );

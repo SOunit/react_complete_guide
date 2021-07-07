@@ -10,7 +10,7 @@ const CartButton = () => {
   return (
     <div className={classes.cartButton}>
       <i className='fas fa-shopping-cart'></i> Your Cart{' '}
-      <span className={classes.number}>{ctx.items.length}</span>
+      <span className={classes.number}>{ctx.cart.length}</span>
     </div>
   );
 };
