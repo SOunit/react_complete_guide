@@ -11,14 +11,27 @@ export const CartContextProvider = (props) => {
       amount: 15.55,
       count: 1,
     },
-    { id: 2, title: 'B', description: 'some text b', amount: 13.33, count: 2 },
-    { id: 3, title: 'C', description: 'some text c', amount: 11.11, count: 3 },
-    { id: 4, title: 'D', description: 'some text d', amount: 8.88, count: 4 },
   ]);
 
   const addItemHandler = (item) => {
     setCart((prevState) => {
-      const newCart = [...prevState, item];
+      // check item in cart
+      const newCart = [...prevState];
+
+      const itemIndex = newCart.findIndex((i) => {
+        return i.id === item.id;
+      });
+
+      console.log('addItemHandler, itemIndex', itemIndex);
+
+      if (itemIndex === -1) {
+        // add new item
+        newCart.push(item);
+      } else {
+        // update count
+        newCart[itemIndex].count += 1;
+      }
+
       return newCart;
     });
   };
