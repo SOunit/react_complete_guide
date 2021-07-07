@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Header from './components/Header/Header';
 import InfoBox from './components/InfoBox/InfoBox';
 import AddFood from './components/AddFood/AddFood';
+import Modal from './components/Modal/Modal';
 
 const DUMMY_MENU = [
   { id: 1, title: 'SuShi', description: 'some text', amount: 15.55 },
@@ -11,15 +12,22 @@ const DUMMY_MENU = [
   { id: 4, title: 'D', description: 'some text d', amount: 8.88 },
 ];
 
-const DUMMY_CART = { count: 0, items: [] };
-
 function App() {
   const [menu, setMenu] = useState(DUMMY_MENU);
-  const [cart, setCart] = useState(DUMMY_CART);
+  const [isModal, setIsModal] = useState(false);
+
+  const cartButtonClickHandler = () => {
+    setIsModal(true);
+  };
+
+  const modalCloseHandler = () => {
+    setIsModal(false);
+  };
 
   return (
     <div>
-      <Header />
+      {isModal && <Modal onCloseModal={modalCloseHandler} />}
+      <Header onCartButtonClick={cartButtonClickHandler} />
       <InfoBox />
       <AddFood menu={menu} />
     </div>

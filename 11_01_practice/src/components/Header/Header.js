@@ -1,11 +1,11 @@
 import classes from './Header.module.css';
 import CartButton from './CartButton';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className={classes.header}>
       <h1>ReactMeals</h1>
-      <CartButton />
+      <CartButton onClick={props.onCartButtonClick} />
     </header>
   );
 };
