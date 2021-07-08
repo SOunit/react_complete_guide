@@ -29,7 +29,7 @@ const HeaderCartButton = (props) => {
       setBtnIsHighlighted(false);
     }, 300);
 
-    // cleanup
+    // cleanup, for multi tap in short seconds
     return () => {
       clearTimeout(timer);
     };
