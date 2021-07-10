@@ -3,14 +3,13 @@ import { Fragment, Component } from 'react';
 import Users from './Users';
 
 import classes from './UserFinder.module.css';
-
-const DUMMY_USERS = [
-  { id: 'u1', name: 'Max' },
-  { id: 'u2', name: 'Manuel' },
-  { id: 'u3', name: 'Julie' },
-];
+import UsersContext from '../store/users-context';
 
 class UserFinder extends Component {
+  // class component offer only 1 type of context
+  // in functional component, multiple useContext is available
+  static contextType = UsersContext;
+
   constructor() {
     super();
     this.state = { filteredUsers: [], searchTerm: '' };
@@ -18,14 +17,14 @@ class UserFinder extends Component {
 
   componentDidMount() {
     // http request
-    const res = DUMMY_USERS;
+    const res = this.context.users;
     this.setState({ filteredUsers: res });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchTerm !== this.state.searchTerm) {
       this.setState({
-        filteredUsers: DUMMY_USERS.filter((user) =>
+        filteredUsers: this.context.users.filter((user) =>
           user.name.includes(this.state.searchTerm)
         ),
       });
