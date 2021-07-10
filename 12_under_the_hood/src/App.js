@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import Button from './components/UI/Button/Button';
 
@@ -23,9 +23,13 @@ function App() {
 
   console.log('APP RUNNING');
 
-  const toggleParagraphHandler = () => {
+  // setup for React.memo to work in Button.js
+  // by save function, React.memo can tell no props change
+  // without callback and saving function, function is always different,
+  // leads to always re-evaluation of function
+  const toggleParagraphHandler = useCallback(() => {
     setShowParagraph((prevShowParagraph) => !prevShowParagraph);
-  };
+  }, []);
 
   return (
     <div className='app'>
