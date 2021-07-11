@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -9,7 +9,8 @@ function App() {
   const [error, setError] = useState(null);
 
   // async await syntax is same with then catch behind the scene
-  const fetchMoviesHandler = async () => {
+  // useCallback for not creating method unnesecarily
+  const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
@@ -34,7 +35,12 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-  };
+  }, []);
+
+  // all dependency should be included in a best practice
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
 
   let content = <p>Found no movies.</p>;
 
