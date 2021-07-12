@@ -35,7 +35,7 @@ let userName2: string | string[];
 userName2 = 'Jack Pearson';
 userName2 = ['Jack', 'Pearson'];
 
-// type aliences
+// type aliases
 type Person = { name: string; age: number };
 let person2: Person;
 person2 = { name: 'Jack', age: 38 };
