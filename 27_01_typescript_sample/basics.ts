@@ -23,3 +23,6 @@ person = { name: 'Jack', age: 38 };
 
 let people: { name: string; age: number }[];
 people = [person, { name: 'Rebecca', age: 38 }];
+
+// type inference
+let corse = 'React - The complete guide';
