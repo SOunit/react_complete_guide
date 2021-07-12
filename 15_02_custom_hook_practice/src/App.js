@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import Tasks from './components/Tasks/Tasks';
 import NewTask from './components/NewTask/NewTask';
+import useTasks from './hooks/use-tasks';
 
 function App() {
+  const http = useTasks();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [tasks, setTasks] = useState([]);
