@@ -41,3 +41,44 @@ let person2: Person;
 person2 = { name: 'Jack', age: 38 };
 let people2: Person[];
 people = [person2, { name: 'Rebecca', age: 38 }];
+
+// Functions & types
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+// type inference
+function add1(a: number, b: number) {
+  return a + b;
+}
+
+function printValue(value: any) {
+  console.log(value);
+}
+
+// Generics
+
+// why this exists?
+// for asigning type for the case below
+function insertAtBeginning(array: any[], value: any) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const demoArray = [1, 2, 3];
+// type is any, no check by typescript
+const updatedArray = insertAtBeginning(demoArray, -1);
+console.log(updatedArray);
+
+// how to use it?
+function insertAtBeginning2<T>(array: T[], value: T) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const demoArray2 = [1, 2, 3];
+// this keeps type
+const updatedArray2 = insertAtBeginning2(demoArray, -1);
+
+// this keeps type too
+const stringArray = insertAtBeginning2(['a', 'b', 'c'], 'x');
