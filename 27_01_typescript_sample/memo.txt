@@ -1,0 +1,8 @@
+# how to use typescript
+
+## setup typescript
+- npm init -y
+- npm install typescript
+
+## compile typescript to javascript
+- npx tsc <file-name>
