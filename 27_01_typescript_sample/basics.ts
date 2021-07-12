@@ -26,3 +26,13 @@ people = [person, { name: 'Rebecca', age: 38 }];
 
 // type inference
 let corse = 'React - The complete guide';
+
+// union type
+let course2: string | number = 'React';
+course2 = 10;
+
+let userName2: string | string[];
+userName2 = 'Jack Pearson';
+userName2 = ['Jack', 'Pearson'];
+
+// type aliences
