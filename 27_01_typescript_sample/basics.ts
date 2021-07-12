@@ -36,3 +36,8 @@ userName2 = 'Jack Pearson';
 userName2 = ['Jack', 'Pearson'];
 
 // type aliences
+type Person = { name: string; age: number };
+let person2: Person;
+person2 = { name: 'Jack', age: 38 };
+let people2: Person[];
+people = [person2, { name: 'Rebecca', age: 38 }];
