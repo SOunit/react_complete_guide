@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-const NewTodo = () => {
+const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   // this is useRef initial setup
   // 1. ref type is html-input-element in this case. other sample is HTMLButtonElement.
   // 2. initial value is null, connected with input element in return statement
@@ -17,6 +17,8 @@ const NewTodo = () => {
     if (enteredText.trim().length === 0) {
       return;
     }
+
+    props.onAddTodo(enteredText);
   };
 
   return (
