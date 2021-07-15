@@ -1,8 +1,12 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+
+import { TodosContext } from '../store/todos-context';
 
 import classes from './NewTodo.module.css';
 
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+  const todosCtx = useContext(TodosContext);
+
   // this is useRef initial setup
   // 1. ref type is html-input-element in this case. other sample is HTMLButtonElement.
   // 2. initial value is null, connected with input element in return statement
@@ -20,7 +24,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       return;
     }
 
-    props.onAddTodo(enteredText);
+    todosCtx.addTodo(enteredText);
   };
 
   return (
