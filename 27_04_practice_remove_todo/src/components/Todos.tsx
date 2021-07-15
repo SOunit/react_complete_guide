@@ -6,11 +6,19 @@ import classes from './Todos.module.css';
 
 // FC = Functional Component
 // this type offers base setup for Functional component in typescript
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
+const Todos: React.FC<{
+  items: Todo[];
+  onClickTodoItem: (id: string) => void;
+}> = (props) => {
   return (
     <ul className={classes.todos}>
       {props.items.map((item) => (
-        <TodoItem text={item.text} key={item.id} />
+        <TodoItem
+          text={item.text}
+          key={item.id}
+          id={item.id}
+          onClickTodoItem={props.onClickTodoItem}
+        />
       ))}
     </ul>
   );
