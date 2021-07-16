@@ -1,35 +1,18 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 const SimpleInput = (props) => {
-  const nameInputref = useRef();
   const [enteredName, setEnteredName] = useState('');
-  const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
-  useEffect(() => {
-    if (enteredNameIsValid) {
-      console.log('entered name is valid');
-    }
-  }, [enteredNameIsValid]);
+  const enteredNameIsValid = enteredName.trim() !== '';
+  const enteredNameIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
-
-    // this must not be enteredName in state
-    // state update is scheduled only,
-    // so enteredName value will be late
-    // if it is used in here.
-    if (event.target.value.trim() !== '') {
-      setEnteredNameIsValid(true);
-    }
   };
 
   const nameInputBlurHandler = (event) => {
     setEnteredNameTouched(true);
-
-    if (enteredName.trim() === '') {
-      setEnteredNameIsValid(false);
-    }
   };
 
   const formSubmissionHandler = (event) => {
@@ -37,28 +20,18 @@ const SimpleInput = (props) => {
 
     setEnteredNameTouched(true);
 
-    if (enteredName.trim() === '') {
-      setEnteredNameIsValid(false);
+    if (!enteredNameIsValid) {
       return;
     }
-    setEnteredNameIsValid(true);
 
     // state
     console.log(enteredName);
 
-    // ref
-    const enteredValue = nameInputref.current.value;
-    console.log(enteredValue);
-
     // clear
     setEnteredName('');
-
-    // this is possible, but NOT IDEAL, changin DOM directly
-    // react should be the only one to manipulate DOM
-    // nameInputref.current.value = '';
+    setEnteredNameTouched(false);
   };
 
-  const enteredNameIsInvalid = !enteredNameIsValid && enteredNameTouched;
   const nameInputClasses = enteredNameIsInvalid
     ? 'form-control invalid'
     : 'form-control';
@@ -68,7 +41,6 @@ const SimpleInput = (props) => {
       <div className={nameInputClasses}>
         <label htmlFor='name'>Your Name</label>
         <input
-          ref={nameInputref}
           type='text'
           id='name'
           onChange={nameInputChangeHandler}
