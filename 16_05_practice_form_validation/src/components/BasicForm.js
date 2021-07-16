@@ -14,6 +14,7 @@ import BaseInput from '../hooks/base-input';
 // 5. add check for blur
 // 6. add check for key touch to recover error
 // 7. add error style to input form
+// 8. move all to custom hooks
 const BasicForm = (props) => {
   const {
     enteredValue: enteredFirstName,
@@ -24,8 +25,30 @@ const BasicForm = (props) => {
     valueInputClasses: firstNameInputClasses,
   } = BaseInput((value) => value.trim() !== '');
 
+  const {
+    enteredValue: enteredLastName,
+    valueIsValid: enteredLastNameIsValid,
+    hasError: lastNameInputHasError,
+    valueInputChangeHandler: lastNameInputChangeHandler,
+    valueInputBlurHandler: lastNameInputBlurHandler,
+    valueInputClasses: lastNameInputClasses,
+  } = BaseInput((value) => value.trim() !== '');
+
+  const {
+    enteredValue: enteredEmail,
+    valueIsValid: enteredEmailIsValid,
+    hasError: emailInputHasError,
+    valueInputChangeHandler: emailInputChangeHandler,
+    valueInputBlurHandler: emailInputBlurHandler,
+    valueInputClasses: emailInputClasses,
+  } = BaseInput((value) => value.includes('@'));
+
   let formIsValid = false;
-  if (enteredFirstNameIsValid) {
+  if (
+    enteredFirstNameIsValid &&
+    enteredLastNameIsValid &&
+    enteredEmailIsValid
+  ) {
     formIsValid = true;
   }
 
@@ -42,17 +65,35 @@ const BasicForm = (props) => {
             onBlur={firstNameInputBlurHandler}
           />
           {firstNameInputHasError && (
-            <p className='error-text'>Name is empty.</p>
+            <p className='error-text'>first name is empty.</p>
           )}
         </div>
-        <div className='form-control'>
+        <div className={lastNameInputClasses}>
           <label htmlFor='name'>Last Name</label>
-          <input type='text' id='name' />
+          <input
+            type='text'
+            id='name'
+            value={enteredLastName}
+            onChange={lastNameInputChangeHandler}
+            onBlur={lastNameInputBlurHandler}
+          />
+          {lastNameInputHasError && (
+            <p className='error-text'>last name is empty.</p>
+          )}
         </div>
       </div>
-      <div className='form-control'>
+      <div className={emailInputClasses}>
         <label htmlFor='name'>E-Mail Address</label>
-        <input type='text' id='name' />
+        <input
+          type='text'
+          id='name'
+          value={enteredEmail}
+          onChange={emailInputChangeHandler}
+          onBlur={emailInputBlurHandler}
+        />
+        {emailInputHasError && (
+          <p className='error-text'>Please enter a valid email.</p>
+        )}
       </div>
       <div className='form-actions'>
         <button disabled={!formIsValid}>Submit</button>
