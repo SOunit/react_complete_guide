@@ -16,32 +16,34 @@ import BaseInput from '../hooks/base-input';
 // 7. add error style to input form
 const BasicForm = (props) => {
   const {
-    enteredValue: enteredName,
-    valueIsValid: enteredNameIsValid,
-    hasError: nameInputHasError,
-    valueInputChangeHandler: nameInputChangeHandler,
-    valueInputBlurHandler: nameInputBlurHandler,
-    valueInputClasses: nameInputClasses,
+    enteredValue: enteredFirstName,
+    valueIsValid: enteredFirstNameIsValid,
+    hasError: firstNameInputHasError,
+    valueInputChangeHandler: firstNameInputChangeHandler,
+    valueInputBlurHandler: firstNameInputBlurHandler,
+    valueInputClasses: firstNameInputClasses,
   } = BaseInput((value) => value.trim() !== '');
 
   let formIsValid = false;
-  if (enteredNameIsValid) {
+  if (enteredFirstNameIsValid) {
     formIsValid = true;
   }
 
   return (
     <form>
       <div className='control-group'>
-        <div className={nameInputClasses}>
+        <div className={firstNameInputClasses}>
           <label htmlFor='name'>First Name</label>
           <input
             type='text'
             id='name'
-            value={enteredName}
-            onChange={nameInputChangeHandler}
-            onBlur={nameInputBlurHandler}
+            value={enteredFirstName}
+            onChange={firstNameInputChangeHandler}
+            onBlur={firstNameInputBlurHandler}
           />
-          {nameInputHasError && <p className='error-text'>Name is empty.</p>}
+          {firstNameInputHasError && (
+            <p className='error-text'>Name is empty.</p>
+          )}
         </div>
         <div className='form-control'>
           <label htmlFor='name'>Last Name</label>
