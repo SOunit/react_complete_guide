@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import BaseInput from '../hooks/base-input';
 
 // behavior
 // 1. instant error check
@@ -15,30 +15,19 @@ import { useState } from 'react';
 // 6. add check for key touch to recover error
 // 7. add error style to input form
 const BasicForm = (props) => {
-  const [enteredName, setEnteredName] = useState('');
-  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-
-  let enteredNameIsValid = false;
-  if (enteredName.trim() !== '') {
-    enteredNameIsValid = true;
-  }
-
-  let hasError = !enteredNameIsValid && enteredNameTouched;
+  const {
+    enteredValue: enteredName,
+    valueIsValid: enteredNameIsValid,
+    hasError: nameInputHasError,
+    valueInputChangeHandler: nameInputChangeHandler,
+    valueInputBlurHandler: nameInputBlurHandler,
+    valueInputClasses: nameInputClasses,
+  } = BaseInput((value) => value.trim() !== '');
 
   let formIsValid = false;
-  if (!hasError) {
+  if (enteredNameIsValid) {
     formIsValid = true;
   }
-
-  const nameInputChangeHandler = (event) => {
-    setEnteredName(event.target.value);
-  };
-
-  const nameInputBlurHandler = () => {
-    setEnteredNameTouched(true);
-  };
-
-  const nameInputClasses = hasError ? 'form-control invalid' : 'form-control';
 
   return (
     <form>
@@ -52,7 +41,7 @@ const BasicForm = (props) => {
             onChange={nameInputChangeHandler}
             onBlur={nameInputBlurHandler}
           />
-          {hasError && <p className='error-text'>Name is empty.</p>}
+          {nameInputHasError && <p className='error-text'>Name is empty.</p>}
         </div>
         <div className='form-control'>
           <label htmlFor='name'>Last Name</label>
