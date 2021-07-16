@@ -4,6 +4,7 @@ import { useState } from 'react';
 // 1. instant error check
 // 2. instant error recovery
 // 3. show error message only after touch
+// 4. submit button disabled
 
 // todo to get behavior
 // 1. show error message
@@ -23,6 +24,11 @@ const BasicForm = (props) => {
   }
 
   let hasError = !enteredNameIsValid && enteredNameTouched;
+
+  let formIsValid = false;
+  if (!hasError) {
+    formIsValid = true;
+  }
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -58,7 +64,7 @@ const BasicForm = (props) => {
         <input type='text' id='name' />
       </div>
       <div className='form-actions'>
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
