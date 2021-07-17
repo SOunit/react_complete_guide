@@ -34,6 +34,11 @@ const Cart = (props) => {
     </ul>
   );
 
+  const showOrderHandler = () => {
+    props.onShowOrder();
+    props.onClose();
+  };
+
   return (
     <Modal onClose={props.onClose}>
       {cartItems}
@@ -45,7 +50,11 @@ const Cart = (props) => {
         <button className={classes['button--alt']} onClick={props.onClose}>
           Close
         </button>
-        {hasItems && <button className={classes.button}>Order</button>}
+        {hasItems && (
+          <button className={classes.button} onClick={showOrderHandler}>
+            Order
+          </button>
+        )}
       </div>
     </Modal>
   );
