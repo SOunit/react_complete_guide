@@ -1,30 +1,21 @@
-import { useState } from 'react';
-
 import Modal from '../UI/Modal';
 
+import UserInput from '../../hooks/user-input';
+
 const Order = (props) => {
-  const [enteredName, setEnteredName] = useState('');
-  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-
-  const enteredNameIsValid = enteredName.trim() !== '';
-  const hasError = !enteredNameIsValid && enteredNameTouched;
-
-  const nameInputChangeHandler = (event) => {
-    setEnteredName(event.target.value);
-  };
-
-  const nameInputBlurHandler = () => {
-    setEnteredNameTouched(true);
-  };
-
-  const reset = () => {
-    setEnteredName('');
-    setEnteredNameTouched(false);
-  };
+  const {
+    enteredValue: enteredName,
+    enteredValueIsValid: enteredNameIsValid,
+    hasError,
+    valueInputChangeHandler: nameInputChangeHandler,
+    valueInputBlurHandler: nameInputBlurHandler,
+    reset: nameInputReset,
+  } = UserInput((value) => value.trim() !== '');
 
   const submitHandler = (event) => {
     event.preventDefault();
-    reset();
+
+    nameInputReset();
   };
 
   let formIsValid = false;
