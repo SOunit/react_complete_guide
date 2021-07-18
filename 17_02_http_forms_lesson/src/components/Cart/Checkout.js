@@ -1,14 +1,25 @@
+import { useRef } from 'react';
 import classes from './Checkout.module.css';
 
 const Checkout = (props) => {
+  const nameInputRef = useRef();
+  const streetInputRef = useRef();
+  const postalCodeInputRef = useRef();
+  const cityInputRef = useRef();
+
   const confirmHandler = (event) => {
     event.preventDefault();
+
+    const enteredName = nameInputRef.current.value;
+    const enteredStreet = streetInputRef.current.value;
+    const enteredPostalCode = postalCodeInputRef.current.value;
+    const enteredCity = cityInputRef.current.value;
   };
 
   return (
-    <form>
+    <form className={classes.form} onSubmit={confirmHandler}>
       <div className={classes.control}>
-        <label htmlFor='name'>Yout name</label>
+        <label htmlFor='name'>Your Name</label>
         <input type='text' id='name' />
       </div>
       <div className={classes.control}>
@@ -23,10 +34,12 @@ const Checkout = (props) => {
         <label htmlFor='city'>City</label>
         <input type='text' id='city' />
       </div>
-      <button type='button' onClick={props.onCancel}>
-        Cancel
-      </button>
-      <button onClick={confirmHandler}>Confirm</button>
+      <div className={classes.actions}>
+        <button type='button' onClick={props.onCancel}>
+          Cancel
+        </button>
+        <button className={classes.submit}>Confirm</button>
+      </div>
     </form>
   );
 };
