@@ -1,5 +1,13 @@
+import { useParams } from 'react-router';
+
 const QuoteDetail = () => {
-  return <h1>Quote Detail</h1>;
+  const params = useParams();
+  return (
+    <section>
+      <h1>Quote Detail</h1>
+      <p>{params.quoteId}</p>
+    </section>
+  );
 };
 
 export default QuoteDetail;
