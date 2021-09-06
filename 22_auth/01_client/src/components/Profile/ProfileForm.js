@@ -2,6 +2,7 @@ import { useRef, useContext } from 'react';
 import { useHistory } from 'react-router';
 import authContext from '../../store/auth-context';
 import classes from './ProfileForm.module.css';
+import { envs } from '../../util/envs';
 
 const ProfileForm = () => {
   const history = useHistory();
@@ -16,7 +17,7 @@ const ProfileForm = () => {
     // add validation
 
     fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDnNY-nxHWbQN59i65AojHkx6hlNtmaxTA',
+      `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${envs.api_key}`,
       {
         method: 'POST',
         body: JSON.stringify({

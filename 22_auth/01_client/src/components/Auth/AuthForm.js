@@ -1,6 +1,7 @@
 import { useState, useRef, useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 import { useHistory } from 'react-router-dom';
+import { envs } from '../../util/envs';
 
 import classes from './AuthForm.module.css';
 
@@ -29,11 +30,9 @@ const AuthForm = () => {
     let url;
 
     if (isLogin) {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDnNY-nxHWbQN59i65AojHkx6hlNtmaxTA';
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${envs.api_key}`;
     } else {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDnNY-nxHWbQN59i65AojHkx6hlNtmaxTA';
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${envs.api_key}`;
     }
 
     fetch(url, {
