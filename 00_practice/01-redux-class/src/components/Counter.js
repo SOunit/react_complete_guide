@@ -48,8 +48,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    counter: state.counter,
-    showCounter: state.showCounter,
+    counter: state.counter.counter,
+    showCounter: state.counter.showCounter,
   };
 };
 
