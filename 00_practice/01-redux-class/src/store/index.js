@@ -1,11 +1,14 @@
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const INCREASE = 'INCREASE';
 export const TOGGLE = 'TOGGLE';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 
-const initialCounterState = { counter: 0, showCounter: false };
+const initialCounterState = { counter: 0, showCounter: true };
+const initialAuthState = { isLogin: false };
 
 const counterReducer = (state = initialCounterState, action) => {
   switch (action.type) {
@@ -22,6 +25,19 @@ const counterReducer = (state = initialCounterState, action) => {
   }
 };
 
-const store = createStore(counterReducer);
+const authReducer = (state = initialAuthState, action) => {
+  switch (action.type) {
+    case LOGIN:
+      return { ...state, isLogin: true };
+    case LOGOUT:
+      return { ...state, isLogin: false };
+    default:
+      return state;
+  }
+};
+
+const reducer = combineReducers({ counter: counterReducer, auth: authReducer });
+
+const store = createStore(reducer);
 
 export default store;
