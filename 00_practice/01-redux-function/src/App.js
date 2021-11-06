@@ -12,7 +12,7 @@ function App() {
     <Fragment>
       {isLogin && <Header />}
       {isLogin && <UserProfile />}
-      <Auth />
+      {!isLogin && <Auth />}
       {isLogin && <Counter />}
     </Fragment>
   );
