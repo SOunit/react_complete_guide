@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { LOGOUT } from '../store';
+import { LOGOUT } from '../store/auth';
 import { connect } from 'react-redux';
 import classes from './Header.module.css';
 

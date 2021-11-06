@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { DECREMENT, INCREASE, INCREMENT, TOGGLE } from '../store';
+import { DECREMENT, INCREASE, INCREMENT, TOGGLE } from '../store/counter';
 import classes from './Counter.module.css';
 
 class Counter extends Component {

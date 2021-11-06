@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { LOGIN } from '../store';
+import { LOGIN } from '../store/auth';
 import classes from './Auth.module.css';
 
 class Auth extends Component {
