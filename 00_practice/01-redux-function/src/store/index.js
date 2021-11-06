@@ -1,27 +1,17 @@
-const redux = require('redux');
+import { combineReducers, createStore } from 'redux';
+import counterReducer from './counter';
 
-const counterInitialState = { counter: 0, showCounter: true };
+const authInitialState = { isLogin: false };
 
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
-export const INCREASE = 'INCREASE';
-export const TOGGLE = 'TOGGLE';
-
-const counterReducer = (state = counterInitialState, action) => {
+const authReducer = (state = authInitialState, action) => {
   switch (action.type) {
-    case INCREMENT:
-      return { ...state, counter: state.counter + 1 };
-    case DECREMENT:
-      return { ...state, counter: state.counter - 1 };
-    case INCREASE:
-      return { ...state, counter: state.counter + action.payload };
-    case TOGGLE:
-      return { ...state, showCounter: !state.showCounter };
     default:
       return state;
   }
 };
 
-const store = redux.createStore(counterReducer);
+const reducer = combineReducers({ counter: counterReducer, auth: authReducer });
+
+const store = createStore(reducer);
 
 export default store;
