@@ -3,7 +3,7 @@ import { counterActions } from '../store';
 import classes from './Counter.module.css';
 
 const Counter = () => {
-  const counter = useSelector((state) => state.counter);
+  const counter = useSelector((state) => state.counter.counter);
   const dispatch = useDispatch();
 
   const toggleCounterHandler = () => {};
