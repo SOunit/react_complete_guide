@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialCartState = {
-  cart: [{ title: 'test', quantity: 3, price: 6, total: 18 }],
+  cart: [{ title: 'Test', quantity: 3, price: 6, total: 18 }],
 };
 
 const calcTotal = (item) => {
@@ -16,6 +16,8 @@ const cartSlice = createSlice({
     addItem: (state, action) => {
       let index = null;
 
+      console.log(action.payload);
+
       state.cart.forEach((item, i) => {
         if (item.title === action.payload.title) {
           index = i;
@@ -26,6 +28,7 @@ const cartSlice = createSlice({
         state.cart[index].quantity++;
       } else {
         state.cart.push(action.payload);
+        index = state.cart.length - 1;
       }
 
       state.cart[index].total = calcTotal(state.cart[index]);
