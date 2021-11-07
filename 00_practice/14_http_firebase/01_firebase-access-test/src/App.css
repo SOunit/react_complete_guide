@@ -7,6 +7,12 @@
   pointer-events: none;
 }
 
+.person {
+  background-color: sandybrown;
+  padding: 1rem;
+  margin: 1rem;
+}
+
 button {
   padding: 0.8rem 2rem;
   margin: 1rem;

@@ -20,10 +20,18 @@ function App() {
     setPeople(people);
   }, []);
 
-  const saveHandler = async () => {
+  const AddHandler = async () => {
+    const person = { id: Math.random(), name: 'Jack' };
+
+    setPeople((prevState) => {
+      const newPeople = [...prevState];
+      newPeople.push(person);
+      return newPeople;
+    });
+
     const res = await axios.post(
       'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json',
-      { id: Math.random(), name: 'Jack' }
+      person
     );
     console.log(res);
   };
@@ -35,15 +43,14 @@ function App() {
   return (
     <div className='App'>
       <div>
+        <button onClick={AddHandler}>Add Jack</button>
+      </div>
+      <div>
         {people.map((person) => (
-          <div key={person.id}>{person.name}</div>
+          <div className='person' key={person.id}>
+            {person.name}
+          </div>
         ))}
-      </div>
-      <div>
-        <button onClick={fetchHandler}>Fetch</button>
-      </div>
-      <div>
-        <button onClick={saveHandler}>Save</button>
       </div>
     </div>
   );
