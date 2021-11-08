@@ -1,41 +1,51 @@
 import { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import { connect } from 'react-redux';
+import { setPeople } from './store/people-actions';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { people: [] };
-  }
-
   fetchHandler = async () => {
-    const res = await axios.get(
-      'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json'
-    );
+    try {
+      const res = await axios.get(
+        'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json'
+      );
 
-    const people = [];
-    for (let key in res.data) {
-      const person = res.data[key];
-      console.log(person);
-      people.push(person);
+      if (res.status !== 200) {
+        throw new Error('Fetch people failed.');
+      }
+
+      const people = [];
+      for (let key in res.data) {
+        const person = res.data[key];
+        console.log(person);
+        people.push(person);
+      }
+
+      this.props.setPeople(people);
+    } catch (err) {
+      console.log(err);
     }
-
-    this.setState({ people });
   };
 
   addHandler = async () => {
-    const person = { id: Math.random(), name: 'Jack' };
+    try {
+      const person = { id: Math.random(), name: 'Jack' };
+      const res = await axios.post(
+        'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json',
+        person
+      );
 
-    const newPeople = [...this.state.people];
-    newPeople.push(person);
-    this.setState({ people: newPeople });
+      if (res.status !== 200) {
+        throw new Error('Add person failed.');
+      }
 
-    const res = await axios.post(
-      'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json',
-      person
-    );
-    console.log(res);
+      const newPeople = [...this.props.people];
+      newPeople.push(person);
+      this.props.setPeople(newPeople);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   componentDidMount() {
@@ -44,13 +54,14 @@ class App extends Component {
 
   render() {
     console.log(this.state);
+    console.log(this.props.people);
     return (
       <div className='App'>
         <div>
           <button onClick={this.addHandler}>Add Jack</button>
         </div>
         <div>
-          {this.state.people.map((person) => (
+          {this.props.people.map((person) => (
             <div className='person' key={person.id}>
               {person.name}
             </div>
@@ -61,4 +72,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    people: state.people.people,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPeople: (people) => dispatch(setPeople(people)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
