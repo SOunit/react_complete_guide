@@ -1,39 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
+import { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPerson, fetchPeople } from './store/people-actions';
 import './App.css';
 
 function App() {
-  const [people, setPeople] = useState([]);
+  const people = useSelector((state) => state.people);
+  const dispatch = useDispatch();
 
-  const fetchHandler = useCallback(async () => {
-    const res = await axios.get(
-      'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json'
-    );
-
-    const people = [];
-    for (let key in res.data) {
-      const person = res.data[key];
-      console.log(person);
-      people.push(person);
-    }
-
-    setPeople(people);
-  }, []);
+  const fetchHandler = useCallback(() => {
+    dispatch(fetchPeople());
+  }, [dispatch]);
 
   const AddHandler = async () => {
     const person = { id: Math.random(), name: 'Jack' };
 
-    setPeople((prevState) => {
-      const newPeople = [...prevState];
-      newPeople.push(person);
-      return newPeople;
-    });
-
-    const res = await axios.post(
-      'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json',
-      person
-    );
-    console.log(res);
+    dispatch(addPerson(person));
   };
 
   useEffect(() => {
