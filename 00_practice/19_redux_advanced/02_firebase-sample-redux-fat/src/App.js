@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { peopleActions } from './store';
+import { peopleActions } from './store/people-slice';
 import axios from 'axios';
 import './App.css';
 
