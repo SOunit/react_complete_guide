@@ -1,8 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { peopleActions } from './store/people-slice';
-import { sendPersonData } from './store/people-actions';
-import axios from 'axios';
+import { sendPersonData, fetchPeopleData } from './store/people-actions';
 import './App.css';
 
 function App() {
@@ -10,17 +8,7 @@ function App() {
   const dispatch = useDispatch();
 
   const fetchHandler = useCallback(async () => {
-    const res = await axios.get(
-      'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json'
-    );
-
-    const people = [];
-    for (let key in res.data) {
-      const person = res.data[key];
-      people.push(person);
-    }
-
-    dispatch(peopleActions.setPeople(people));
+    dispatch(fetchPeopleData());
   }, [dispatch]);
 
   const AddHandler = async () => {
