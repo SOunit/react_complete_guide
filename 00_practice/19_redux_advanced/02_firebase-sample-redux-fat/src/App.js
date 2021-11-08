@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { peopleActions } from './store/people-slice';
+import { peopleActions, sendPersonData } from './store/people-slice';
 import axios from 'axios';
 import './App.css';
 
@@ -25,13 +25,7 @@ function App() {
   const AddHandler = async () => {
     const person = { id: Math.random(), name: 'Jack' };
 
-    dispatch(peopleActions.addPerson(person));
-
-    const res = await axios.post(
-      'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json',
-      person
-    );
-    console.log(res);
+    dispatch(sendPersonData(person));
   };
 
   useEffect(() => {
