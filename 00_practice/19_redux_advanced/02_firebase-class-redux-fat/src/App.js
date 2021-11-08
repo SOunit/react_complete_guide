@@ -1,37 +1,17 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { SET_PEOPLE } from './store/people-reducer';
-import axios from 'axios';
+import { fetchPeople, addPerson } from './store/people-actions';
 import './App.css';
 
 class App extends Component {
-  fetchHandler = async () => {
-    const res = await axios.get(
-      'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json'
-    );
-
-    const people = [];
-    for (let key in res.data) {
-      const person = res.data[key];
-      console.log(person);
-      people.push(person);
-    }
-
-    this.props.setPeople(people);
+  fetchHandler = () => {
+    this.props.fetchPeople();
   };
 
-  addHandler = async () => {
+  addHandler = () => {
     const person = { id: Math.random(), name: 'Jack' };
 
-    const newPeople = [...this.props.people];
-    newPeople.push(person);
-    this.props.setPeople(newPeople);
-
-    const res = await axios.post(
-      'https://fir-db-connection-sample-default-rtdb.firebaseio.com/people.json',
-      person
-    );
-    console.log(res);
+    this.props.addPerson(person);
   };
 
   componentDidMount() {
@@ -64,8 +44,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setPeople: (people) => {
-      dispatch({ type: SET_PEOPLE, payload: people });
+    fetchPeople: (people) => {
+      dispatch(fetchPeople(people));
+    },
+    addPerson: (person) => {
+      dispatch(addPerson(person));
     },
   };
 };
