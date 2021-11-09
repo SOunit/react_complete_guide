@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { useContext } from 'react';
 import './App.css';
+import PeopleList from './components/PeopleList';
+import PeopleContext from './store/people-context';
 
 function App() {
+  const peopleCtx = useContext(PeopleContext);
+  console.log(peopleCtx.people);
+
+  const addJackHandler = () => {
+    peopleCtx.addPerson({ id: Math.random(), Name: 'Jack' });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <button className='btn' onClick={addJackHandler}>
+        Add Jack
+      </button>
+      <PeopleList />
     </div>
   );
 }
