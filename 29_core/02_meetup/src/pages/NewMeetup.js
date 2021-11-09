@@ -1,7 +1,10 @@
 import NewMeetupForm from '../components/meetups/NewMeetupForm';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const NewMeetupPage = () => {
+  const history = useHistory();
+
   const addMeetupHandler = async (meetupData) => {
     try {
       const res = await axios.post(
@@ -12,6 +15,9 @@ const NewMeetupPage = () => {
       if (res.status !== 200) {
         throw new Error('Failed to post new meetup data');
       }
+
+      // replace for no back to previous page
+      history.replace('/');
     } catch (err) {
       console.log(err);
     }
