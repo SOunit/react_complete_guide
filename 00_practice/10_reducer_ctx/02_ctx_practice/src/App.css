@@ -1,3 +1,11 @@
+.btn {
+  padding: 0.8rem 2rem;
+  margin: 1rem;
+  border: none;
+  color: white;
+  background-color: #61dafb;
+}
+
 .App {
   text-align: center;
 }
@@ -5,22 +13,6 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-.person {
-  background-color: sandybrown;
-  padding: 1rem;
-  margin: 1rem;
-}
-
-button {
-  padding: 0.8rem 2rem;
-  margin: 1rem;
-  border: none;
-  background-color: green;
-  color: white;
-  font-weight: bold;
-  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
